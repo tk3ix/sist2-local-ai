@@ -1,0 +1,68 @@
+{
+  "name": "sist2",
+  "builtin-baseline": "9e593bb18ea69cc5095e012465dcd675a822ed0d",
+  "vcpkg-configuration": {
+    "overlay-ports": ["./overlay-ports"]
+  },
+  "dependencies": [
+    {
+      "name": "mimalloc",
+      "features": ["override"],
+      "platform": "!windows"
+    },
+    "openblas",
+    "libantiword2",
+    "libenvelope",
+    "libmobi",
+    "libpff",
+    "libwpd",
+    "utf8h",
+    "libuv",
+    {
+      "name": "curl",
+      "default-features": false,
+      "features": ["openssl"]
+    },
+    {
+      "name": "sqlite3",
+      "default-features": false,
+      "features": ["fts5", "json1"]
+    },
+    "cpp-jwt",
+    "pcre",
+    "cjson",
+    "brotli",
+    {
+      "name": "libarchive",
+      "default-features": false,
+      "features": ["bzip2", "lz4", "lzma", "lzo", "xar"]
+    },
+    "pthread",
+    "tesseract",
+    "libxml2",
+    {
+      "name": "libmupdf",
+      "features": ["ocr", "tofu-cjk-lang"]
+    },
+    "mongoose",
+    "libmagic",
+    "libraw",
+    "gumbo",
+    {
+      "name": "ffmpeg",
+      "default-features": false,
+      "features": ["avcodec", "avformat", "swscale", "swresample", "webp", "opus", "mp3lame", "vpx", "dav1d", "zlib"]
+    },
+    {
+      "name": "libgit2",
+      "default-features": false,
+      "features": ["pcre"]
+    }
+  ],
+  "features": {
+    "tests": {
+      "description": "Build libscan tests",
+      "dependencies": ["gtest"]
+    }
+  }
+}

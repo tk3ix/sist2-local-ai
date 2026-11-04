@@ -1,0 +1,419 @@
+{
+  "date_detection": false,
+  "_source": {
+    "excludes": [
+      "emb",
+      "emb_chunks"
+    ]
+  },
+  "dynamic_templates": [
+    {
+      "emb_384_any": {
+        "path_match": "emb.384.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 384
+        }
+      }
+    },
+    {
+      "emb_idx_384_any": {
+        "path_match": "emb.idx_384.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 384,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_idx_512_any": {
+        "path_match": "emb.idx_512.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 512,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_512_any": {
+        "path_match": "emb.512.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 512
+        }
+      }
+    },
+    {
+      "emb_idx_768_any": {
+        "path_match": "emb.idx_768.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 768,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_768_any": {
+        "path_match": "emb.768.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 768
+        }
+      }
+    },
+    {
+      "emb_idx_1024_any": {
+        "path_match": "emb.idx_1024.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 1024,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_1024_any": {
+        "path_match": "emb.1024.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 1024
+        }
+      }
+    },
+    {
+      "emb_chunks_384_any": {
+        "path_match": "emb_chunks.emb.384.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 384
+        }
+      }
+    },
+    {
+      "emb_chunks_idx_384_any": {
+        "path_match": "emb_chunks.emb.idx_384.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 384,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_chunks_idx_512_any": {
+        "path_match": "emb_chunks.emb.idx_512.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 512,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_chunks_512_any": {
+        "path_match": "emb_chunks.emb.512.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 512
+        }
+      }
+    },
+    {
+      "emb_chunks_idx_768_any": {
+        "path_match": "emb_chunks.emb.idx_768.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 768,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_chunks_768_any": {
+        "path_match": "emb_chunks.emb.768.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 768
+        }
+      }
+    },
+    {
+      "emb_chunks_idx_1024_any": {
+        "path_match": "emb_chunks.emb.idx_1024.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 1024,
+          "index": true,
+          "similarity": "cosine"
+        }
+      }
+    },
+    {
+      "emb_chunks_1024_any": {
+        "path_match": "emb_chunks.emb.1024.*",
+        "mapping": {
+          "type": "dense_vector",
+          "dims": 1024
+        }
+      }
+    }
+  ],
+  "properties": {
+    "_tie": {
+      "type": "keyword",
+      "doc_values": true
+    },
+    "checksum": {
+      "type": "keyword",
+      "index": false
+    },
+    "_depth": {
+      "type": "integer"
+    },
+    "path": {
+      "type": "text",
+      "analyzer": "path_analyzer",
+      "copy_to": "suggest-path",
+      "fielddata": true,
+      "fields": {
+        "nGram": {
+          "type": "text",
+          "analyzer": "my_nGram"
+        },
+        "text": {
+          "type": "text",
+          "analyzer": "content_analyzer"
+        }
+      }
+    },
+    "suggest-path": {
+      "type": "completion",
+      "analyzer": "case_insensitive_kw_analyzer"
+    },
+    "mime": {
+      "type": "keyword"
+    },
+    "parent": {
+      "type": "keyword",
+      "index": false
+    },
+    "thumbnail": {
+      "type": "integer",
+      "index": false
+    },
+    "videoc": {
+      "type": "keyword",
+      "index": false
+    },
+    "audioc": {
+      "type": "keyword",
+      "index": false
+    },
+    "duration": {
+      "type": "integer",
+      "index": false
+    },
+    "width": {
+      "type": "integer",
+      "index": false
+    },
+    "height": {
+      "type": "integer",
+      "index": false
+    },
+    "pages": {
+      "type": "integer",
+      "index": false
+    },
+    "page_breaks": {
+      "type": "keyword",
+      "index": false,
+      "doc_values": false
+    },
+    "mtime": {
+      "type": "date",
+      "format": "epoch_second"
+    },
+    "size": {
+      "type": "long"
+    },
+    "index": {
+      "type": "keyword"
+    },
+    "name": {
+      "analyzer": "content_analyzer",
+      "type": "text",
+      "fielddata": true,
+      "fields": {
+        "nGram": {
+          "type": "text",
+          "analyzer": "my_nGram"
+        }
+      }
+    },
+    "font_name": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "album": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "artist": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "title": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "genre": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "album_artist": {
+      "analyzer": "my_nGram",
+      "type": "text"
+    },
+    "_keyword.*": {
+      "type": "keyword"
+    },
+    "_text.*": {
+      "analyzer": "content_analyzer",
+      "type": "text",
+      "fields": {
+        "nGram": {
+          "type": "text",
+          "analyzer": "my_nGram"
+        }
+      }
+    },
+    "_url": {
+      "type": "keyword",
+      "index": false
+    },
+    "content": {
+      "analyzer": "content_analyzer",
+      "type": "text",
+      "index_options": "offsets",
+      "fields": {
+        "nGram": {
+          "type": "text",
+          "analyzer": "my_nGram"
+        }
+      }
+    },
+    "tag": {
+      "type": "text",
+      "fielddata": true,
+      "analyzer": "tag_analyzer",
+      "copy_to": "suggest-tag"
+    },
+    "suggest-tag": {
+      "type": "completion",
+      "analyzer": "case_insensitive_kw_analyzer"
+    },
+    "exif_make": {
+      "type": "text"
+    },
+    "exif_model": {
+      "type": "text"
+    },
+    "exif_exposure_time": {
+      "type": "keyword"
+    },
+    "exif_fnumber": {
+      "type": "keyword"
+    },
+    "exif_iso_speed_ratings": {
+      "type": "keyword"
+    },
+    "exif_focal_length": {
+      "type": "keyword"
+    },
+    "exif_user_comment": {
+      "type": "text"
+    },
+    "exif_gps_longitude_ref": {
+      "type": "keyword",
+      "index": false
+    },
+    "exif_gps_longitude_dms": {
+      "type": "keyword",
+      "index": false
+    },
+    "exif_gps_longitude_dec": {
+      "type": "keyword",
+      "index": false
+    },
+    "exif_gps_latitude_ref": {
+      "type": "keyword",
+      "index": false
+    },
+    "exif_gps_latitude_dms": {
+      "type": "keyword",
+      "index": false
+    },
+    "exif_gps_latitude_dec": {
+      "type": "keyword",
+      "index": false
+    },
+    "author": {
+      "type": "text"
+    },
+    "modified_by": {
+      "type": "text"
+    },
+    "emb.idx_512.clip": {
+      "type": "dense_vector",
+      "dims": 512,
+      "index": true,
+      "similarity": "cosine"
+    },
+    "exif_software": {
+      "type": "text"
+    },
+    "exif_description": {
+      "type": "text"
+    },
+    "exif_datetime": {
+      "type": "keyword",
+      "index": false
+    },
+    "media_comment": {
+      "type": "text"
+    },
+    "bitrate": {
+      "type": "long",
+      "index": false
+    },
+    "emb_chunks": {
+      "type": "nested",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "index": false
+        },
+        "end": {
+          "type": "integer",
+          "index": false
+        },
+        "text": {
+          "type": "text",
+          "index": false,
+          "store": true
+        }
+      }
+    }
+  }
+}

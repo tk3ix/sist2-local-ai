@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.9
+    container_name: sist2-es
+    volumes:
+      # This directory must have 1000:1000 permissions
+      - /data/sist2-es-data/:/usr/share/elasticsearch/data
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+  sist2-admin:
+    build:
+      context: .
+    container_name: sist2-admin
+    volumes:
+      - /data/sist2-admin-data/:/sist2-admin/
+      - /<path to index>/:/host
+    ports:
+      - 4090:4090
+      # NOTE: Don't export this port publicly!
+      - 8080:8080
+    entrypoint: node
+    command:
+      - /root/sist2-admin/server/main.js
